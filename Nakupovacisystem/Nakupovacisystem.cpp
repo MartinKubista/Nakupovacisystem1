@@ -52,19 +52,19 @@ void vymena()
         {
             novepotraviny[c] = potraviny[i];
             novekg1[c] = kg1[i];
-            druhacena[c] = prvacena[i];
+            druhacena[c] = prvacena[i];      // slúži na to aby prepísal z starého po¾a prvky do nového po¾a a preskoèi medzere
             c++;
 
         }
     }
     for (int i = 0; i < 15; i++)
     {
-        potraviny[i] = novepotraviny[i];
+        potraviny[i] = novepotraviny[i];   // vypíše z nového po¾a do strého 
         kg1[i] = novekg1[i];
         prvacena[i] = druhacena[i];
 
     }
-    b = b - 1;
+    b = b - 1;   
 }
 
 
