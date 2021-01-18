@@ -1,14 +1,14 @@
-#include <iostream>
-#include <fstream>
+#include <iostream> // definuje objekty cout a cin 
+#include <fstream>  // poskytuje triedy pre prácu so súbormi
 #include<string>
-#include <cmath>
-#include <ctime>
+#include <cmath>  // môeme pouíva rôzne matematické funkcie
+#include <ctime> // pouíva sa pre prácu s èasom
 
 using namespace std;
 int c = 0;
 int b = 0;
 string potraviny[15] = {};
-string novepotraviny[15] = {};
+string novepotraviny[15] = {};   // premene
 int kg1[15] = {};
 int novekg1[15] = {};
 double prvacena[15] = {};
@@ -16,7 +16,7 @@ double druhacena[15] = {};
 double cena = 0.0;
 
 
-void tvojzoznammoznost()
+void tvojzoznammoznost() // funkcia slúi na vıpis zoznamu + zväèšenie premenej b
 {
     for (int i = 0; i <= b; i++)
     {
@@ -30,7 +30,7 @@ void tvojzoznammoznost()
 }
 
 
-void tvojzoznam()
+void tvojzoznam()  // tie slúi na vıpiss zoznamu
 {
     cout << "Tvoj zoznam" << endl;
     for (int i = 0; i < b; i++)
@@ -71,16 +71,16 @@ void vymena()
 int main(){
     double ncena;
     int moznost = 0;
-    int o, odstranenie, miesto, kg2, kg;
+    int o, odstranenie, miesto, kg2, kg;  // premene
     double kgc = 0.0;
     ifstream zacatek;
     do
     {
-        zacatek.open("zacatek.txt");
-        cout << zacatek.rdbuf() << endl;
-        zacatek.close();
-        cin.get();
-        system("CLS");
+        zacatek.open("zacatek.txt");        // vypis zo súboru open otvorí txt subor
+        cout << zacatek.rdbuf() << endl;    // vypíše do konzoly text
+        zacatek.close();                    // zatvorí txt súbor
+        cin.get();                   // èaká na nejakı vstup a potom pokraèuje
+        system("CLS");               // vymae konzolu
         tvojzoznam();
         while (cout << "1. Pridaj\n2. Odober\n3. Skonci\n" && !(cin >> moznost))
         {
@@ -88,7 +88,7 @@ int main(){
             cin.clear();
             cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             cout << "Mas zadat cislo\n";
-        }
+        } // ak zadáme zlı vstup napr písmeno tak sa vymae a spıta sa nás znova
         
         system("CLS");
 
@@ -112,15 +112,15 @@ int main(){
                 cout << "6. Avokado 1 kg__1,49€" << endl;
                 cout << "7. Kiwi 1 kg__2,29€" << endl;
 
-                while (cout << "Zadaj cislo riadku\n" && !(cin >> kg2))
+                while (cout << "Zadaj cislo riadku\n" && !(cin >> kg2))   // naèitame int do kg2
                 {
                     system("CLS");
                     cin.clear();
                     cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                     cout << "Mas zadat cislo\n";
                 }
-                if (kg2 == 1) {
-                    potraviny[b] = "Banany 1 kg";
+                if (kg2 == 1) {                   // puijeme kg2 v podmienke
+                    potraviny[b] = "Banany 1 kg"; // uloi text do po¾a na miesto b  b = 0
                 }
                 else if (kg2 == 2) {
                     potraviny[b] = "Pomarance 1 kg";
@@ -145,7 +145,7 @@ int main(){
                 }
 
 
-                while (cout << "Kolko kusov\n" && !(cin >> kg))
+                while (cout << "Kolko kusov\n" && !(cin >> kg))         // poèet kusov
                 {
                     system("CLS");
                     cin.clear();
@@ -153,13 +153,13 @@ int main(){
                     cout << "Mas zadat cislo\n";
                 }
                 
-                kgc = (double)kg;
+                kgc = (double)kg;        // pretypujeme pretoe dalej musim poèitat s double
 
                 switch (kg2)
                 {
                 case 1:
-                    ncena = 1.29 * kgc;
-                    cena = cena + ncena;
+                    ncena = 1.29 * kgc;  // vypoèita cenu 1 potrainy a kolko kusov jej chceme
+                    cena = cena + ncena; // pripoèíta tu cnu k novej cene 
                     break;
                     
                 case 2:
@@ -197,8 +197,8 @@ int main(){
                   
                 }
 
-                kg1[b] = kg;
-                prvacena[b] = ncena;
+                kg1[b] = kg;      // pole kam ukladá ko¾ko kusov chceme
+                prvacena[b] = ncena;   // pole kam ukladá cenu za poèet kudov pre jednu potravinu
                 system("CLS");
                 cin.get();
                 tvojzoznammoznost();
@@ -743,8 +743,8 @@ int main(){
                 tvojzoznam();
                 cout << "Zadaj prvok na odstranenie\n";
                 cin >> odstranenie;
-                cena = cena - prvacena[odstranenie - 1];
-                potraviny[odstranenie - 1] = " ";                      
+                cena = cena - prvacena[odstranenie - 1];  // odpoèita od po¾a cenu v poli -1 kôli tomu lebo pole zaèina od 0
+                potraviny[odstranenie - 1] = " ";         // vymae v poli danú premennú             
                 vymena();
                 cout << "Chces odstranit dalsi prvok\n1 Ano\n2 Nie\n";
                 cin >> o;
@@ -757,18 +757,18 @@ int main(){
     }while (moznost != 3);
 
     tvojzoznam();
-    srand(time(NULL));
-    double pc = (rand() % 6);
-    cena = cena - ((cena / 100) * pc);
-    cena = ceil(cena * 100.0) / 100.0;
+    srand(time(NULL));                  // slui nagenerovanie
+    double pc = (rand() % 6);           // dá èíslo od 0 do 5 ako zlavu 
+    cena = cena - ((cena / 100) * pc);  // vypoèita cenu po zlave
+    cena = ceil(cena * 100.0) / 100.0;  // zaokruhli na dve desatine èisla
     cout << "Otvor subor koniec.txt a zistis konecnu cenu :DD" << endl;
 
     ofstream myfile;
-    myfile.open("koniec.txt");
-    myfile <<"Zlava je: " << pc << "%\n";
-    myfile <<"Cena je: " << cena << "€";
-    myfile.close();
-    return 0;
+    myfile.open("koniec.txt");             // vytvori txt subor
+    myfile <<"Zlava je: " << pc << "%\n";  //vypiše do súboru
+    myfile <<"Cena je: " << cena << "€";   //vypiše do súboru
+    myfile.close();                        //zatvori súbor
+    return 0; 
 }
 	
 
