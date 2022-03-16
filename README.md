@@ -9,3 +9,4 @@ náhodné čísla
 načítanie vstupu zo súboru
 uloženie výstupu zo súboru
 funkcie
+kdgjkgjghkl
